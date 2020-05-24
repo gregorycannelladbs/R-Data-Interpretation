@@ -27,7 +27,7 @@ churn_data <- churn_data[-1]
 churn_data <- na.omit(churn_data)
 
 # Boxplot "Monthly charges distribution by churn"
-boxplot(MonthlyCharges ~ Churn, ylab="Monthly charges", main="Monthly charges distribution by churn")
+boxplot(MonthlyCharges ~ Churn, ylab="Monthly charges", main="Monthly charges distribution by churn", las=1)
 
 # Proportion of churning customers (senior vs non-senior citizens)
 ggplot(churn_data, aes(SeniorCitizen, fill=Churn))+
@@ -69,7 +69,9 @@ model_accuracy <- mean(y_pred == y_act)
 confusion_matrix <- table(predicted=y_pred, actual=y_act)
 confusion_matrix
 
-# Pecentage of correct predictions that customer is churning
+# Pecentage of correct predictions that customer is churning is 52%
+# Based on the relatively low percentage of correct predictions that a customer is churning, I would NOT recommend
+# to deploy this model in production
 confusion_matrix[2,2]/(confusion_matrix[2,1] + confusion_matrix[2,2])
 
 detach(churn_data)
